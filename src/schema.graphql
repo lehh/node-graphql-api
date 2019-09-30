@@ -1,0 +1,41 @@
+type Query {
+    clients: [Client]
+    products: [Product]
+    orders: [Order]
+}
+
+type Mutation {
+    createClient(name: String!, email: String!, cnpj: String!) : Client!
+    createProduct(name: String!, price: Float!) : Product!
+    createOrder(clientId: String!, orderProducts: [OrderProductInput!]!) : Order!
+}
+
+type Client {
+    id: ID!
+    name: String!
+    email: String!
+    cnpj: String!
+}
+
+type Product {
+    id: ID!
+    name: String!
+    price: Float!
+}
+
+type Order {
+    id: ID!
+    client: Client!
+    orderProducts: [OrderProductType]!
+}
+
+type OrderProductType {
+    id: ID!
+    product: Product!
+    quantity: Int!
+}
+
+input OrderProductInput {
+    productId: ID!
+    quantity: Int!
+}
